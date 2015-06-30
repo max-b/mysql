@@ -23,7 +23,7 @@
   notify:
    - restart mysql
 
-- name: Start the mysql services Redhat
+- name: Start the mysql services 
   service: name={{ mysql_service }} state=started enabled=yes
 
 - name: update mysql root password for all root accounts
@@ -93,3 +93,5 @@
   when: slave|failed and mysql_repl_role == 'slave' and mysql_repl_master is defined
 
 
+- name: Enable MySQL as default and start service
+  service: name=mysql enabled=yes state=started
